@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <section>
+      <h1>Chat Popup</h1>
+      <p>Click on the chat button to start chatting</p>
+
+      <button class="chat-btn" (click)="togglePopup()">
+          <i class="fa fa-comment"></i>
+      </button>
+
+      <div class="chat-popup" *ngIf="showPopup">
+          <div class="chat-area" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <div  *ngFor="let m of conversation">
+
+                <div class="income-msg" *ngIf="!m.final_answer">
+                  <img src="assets/img/avatar-1.png" class="avatar avatar-1" >
+                  <div class="msg" >
+                    {{m.question_dsc}}
+                  </div>
+                </div>
+
+                <div class="out-msg" *ngIf="m.final_answer && step == 1">
+                  <div class="my-msg" >
+                    {{m.question_dsc}}
+                  </div>
+                </div>
+
+                <div class="suggestion-div" *ngIf="m.final_answer && step != 1">
+                  <div class="my-msg" >
+                    {{m.question_dsc}}
+                  </div>
+                </div>
+
+                <div  class="answer-div" *ngIf="m.answers" >
+                  <button class="answer" *ngFor="let a of m.answers" (click)="answerChosen(m,a)">{{a.answer_dsc}}</button>
+                </div>
+
+                <div class="answer-div" *ngIf="m.typeMsg == 'loading'"><i class="fa fa-spinner"></i></div>
+
+            </div>
+          </div>
+
+          <div class="input-area">
+              <input type="text" name="msg" [(ngModel)]="msg" (keyup)="onKeyUp($event)" readonly>
+
+              <button class="submit" (click)="sendMessage()" [disabled]="!msg"> <i class="fa fa-paper-plane"></i></button>
+          </div>
+      </div>
+  </section>
+
+</body>
+</html>
