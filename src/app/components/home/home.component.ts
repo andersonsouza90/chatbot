@@ -39,6 +39,10 @@ export class HomeComponent implements OnInit {
 
   answerChosen(m: any, a: any){
 
+    if(this.step == -1){
+      throw "Menor que 18 anos!";
+    }
+
     //pensar em separar por funções
     if(a.step == 'Y'){
       this.step = 2;
@@ -52,20 +56,21 @@ export class HomeComponent implements OnInit {
       this.retrieveByStep(this.step);
 
     }else{
+
       if(m.step >= this.step){
         if(!a.next_step){
+          this.step = -1 ;
           this.conversation.push({
                                   question_dsc: a.step,
                                   final_answer: true});
-
         }else{
           this.step = a.step;
           this.retrieveByStep(this.step);
         }
       }
 
-      if(a.step.indexOf('Suges') !== -1){
-        this.step = 100 ;
+      if(a.step.indexOf('Suges') !== -1 && this.step != 1000){
+        this.step = 1000 ;
         this.conversation.push({
           question_dsc: "Deseja refazer as questões?",
           final_answer: false,
@@ -76,7 +81,6 @@ export class HomeComponent implements OnInit {
         });
       }
     }
-
 
   }
 

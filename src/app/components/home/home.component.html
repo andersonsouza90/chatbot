@@ -27,13 +27,13 @@
                   </div>
                 </div>
 
-                <div class="out-msg" *ngIf="m.final_answer && step == 1">
+                <div class="out-msg" *ngIf="m.final_answer && step == -1">
                   <div class="my-msg" >
                     {{m.question_dsc}}
                   </div>
                 </div>
 
-                <div class="suggestion-div" *ngIf="m.final_answer && step != 1">
+                <div class="suggestion-div" *ngIf="m.final_answer && step > 1">
                   <div class="my-msg" >
                     {{m.question_dsc}}
                   </div>
