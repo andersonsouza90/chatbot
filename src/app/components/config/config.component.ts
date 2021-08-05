@@ -9,7 +9,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class ConfigComponent implements OnInit {
   questions: any = [];
-  _filterBy: number = 0;
   filteredQuestion: any = [];
 
   constructor(private configService: ConfigService) { }

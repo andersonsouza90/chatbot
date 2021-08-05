@@ -17,7 +17,7 @@
           <input type="number" name="step" #{{q.id}}_step class="form-control" value="{{q.step}}" (blur)="updateArray(q, $event)">
         </td>
         <td>
-          <input type="text" name="question" #q.question_dsc class="form-control" value="{{q.question_dsc}}" (blur)="updateArray(q, $event)">
+          <input type="text" name="question" maxlength="40" #q.question_dsc class="form-control" value="{{q.question_dsc}}" (blur)="updateArray(q, $event)">
         </td>
         <td>
           <a class="btn btn-success me-1" (click)="updateQuestion(q)"><i class="fa fa-save" aria-hidden="true"></i></a>

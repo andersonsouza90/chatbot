@@ -18,8 +18,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <label for="validade">Question</label>
-          <input type="text" class="form-control" name="question_dsc" [(ngModel)]="question.question_dsc" required #qQuestion_dsc="ngModel" [ngClass]="{'is-invalid': qQuestion_dsc.invalid}">
+          <label for="question_dsc">Question</label>
+          <input type="text" class="form-control" maxlength="40" name="question_dsc" [(ngModel)]="question.question_dsc" required #qQuestion_dsc="ngModel" [ngClass]="{'is-invalid': qQuestion_dsc.invalid}">
         </div>
       </div>
     </div>
