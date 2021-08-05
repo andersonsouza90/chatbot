@@ -12,7 +12,7 @@ export class ConfigService{
 
   constructor(private httpClient: HttpClient, private toastr: ToastrService) { }
 
-  retrieveAll(): Observable<[]>{ //Observable empacota o response, é assincrono
+  retrieveAll(): Observable<[]>{
     return this.httpClient.get<[]>(AppConstants.baseUrl);
   }
 

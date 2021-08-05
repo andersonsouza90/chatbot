@@ -23,7 +23,6 @@ export class ListAnswerComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.activatedRouter.snapshot.paramMap.get('id'));
     this.retrieveAllById(id);
-
   }
 
   deleteAnswerById(a: IAnswer): void{
@@ -38,7 +37,6 @@ export class ListAnswerComponent implements OnInit {
       next: r => {
         this.question = r;
         this.answers = this.question.answers
-        console.log(' this.msgs',  this.question);
       },
       error: err => console.log('Erro: ' + err)
     });

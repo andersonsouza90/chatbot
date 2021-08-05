@@ -21,7 +21,6 @@ export class ConfigComponent implements OnInit {
     this.configService.retrieveAll().subscribe({
       next: r => {
         this.questions = r;
-        console.log(' this.msgs',  this.questions);
       },
       error: err => console.log('Erro: ' + err)
     });
@@ -37,13 +36,11 @@ export class ConfigComponent implements OnInit {
   updateQuestion(q: any): void{
     console.log(q);
     this.configService.updateQuestion(q).subscribe(retorno =>{
-
         this.configService.exibirMensagem(
           'SISTEMA',
           `${q.question_dsc} foi atualizado com sucesso.`,
           'toast-success'
         );
-
         this.retrieveAll();
 
       });
@@ -51,7 +48,7 @@ export class ConfigComponent implements OnInit {
 
   updateArray(question: any, e : any):void{
 
-    if(e.target.value == '')throw "Valor não pode ser vazio";
+    //if(e.target.value == '')throw "Valor não pode ser vazio";
 
     if(e.target.name == 'step'){
       question.step = Number(e.target.value);

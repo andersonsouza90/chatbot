@@ -33,7 +33,6 @@ export class RecordAnswerComponent implements OnInit {
     this.questionService.retrieveById(id).subscribe({
       next: r => {
         this.question = r;
-        console.log(' this.question',  this.question);
       },
       error: err => console.log('Erro: ' + err)
     });

@@ -22,7 +22,6 @@ export class RecordQuestionComponent implements OnInit {
 
   saveQuestion(): void{
     this.questionService.saveQuestion(this.question).subscribe(retorno =>{
-
       this.questionService.exibirMensagem(
         'SISTEMA',
         `${this.question.question_dsc} foi gravado com sucesso.`,

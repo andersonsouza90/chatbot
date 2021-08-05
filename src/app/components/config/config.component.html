@@ -14,14 +14,25 @@
     <tbody>
       <tr *ngFor="let q of questions">
         <td>
-          <input type="number" name="step" #{{q.id}}_step class="form-control" value="{{q.step}}" (blur)="updateArray(q, $event)">
+          <input type="number" name="step" #qStep class="form-control" value="{{q.step}}" (blur)="updateArray(q, $event)">
         </td>
         <td>
-          <input type="text" name="question" maxlength="40" #q.question_dsc class="form-control" value="{{q.question_dsc}}" (blur)="updateArray(q, $event)">
+          <input type="text" name="question" maxlength="40" #qQuestion_dsc class="form-control" value="{{q.question_dsc}}" (blur)="updateArray(q, $event)">
         </td>
         <td>
-          <a class="btn btn-success me-1" (click)="updateQuestion(q)"><i class="fa fa-save" aria-hidden="true"></i></a>
-          <a class="btn btn-warning me-1" routerLink="/config/list-answer/{{q.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
+
+          <a class="btn btn-success me-1"
+          *ngIf="!(q.question_dsc == '') && !(q.step == '')"
+          (click)="updateQuestion(q)">
+            <i class="fa fa-save" aria-hidden="true"></i>
+          </a>
+
+          <a class="btn btn-warning me-1" routerLink="/config/list-answer/{{q.id}}"
+          *ngIf="!(q.question_dsc == '') && !(q.step == '')"
+          >
+            <i class="fa fa-edit" aria-hidden="true"></i>
+          </a>
+
           <a class="btn btn-danger" (confirm)="deleteQuestionById(q)"
           [swal]="{
             title: 'ATENÇÃO',

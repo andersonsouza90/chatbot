@@ -18,14 +18,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveAll();
-
   }
 
   //contornar o erro do scrollTop
   ngAfterContentChecked() {
     this.cd.detectChanges();
   }
-
 
   retrieveAll(): void{
     this.homeService.retrieveAll().subscribe({
@@ -54,19 +52,13 @@ export class HomeComponent implements OnInit {
       throw "Chat bloqueado!";
     }
 
-    console.log(m ,a);
-
-    //pensar em separar por funções
     if(a.step == 'Y'){
-      //this.step = this.conversationList[0].step;
       this.conversation = [];
       this.retrieveAll();
 
     }else if(a.step == 'N'){
       this.showPopup = false;
-      //this.step = 1;
       this.conversation = [];
-      //this.retrieveByStep(this.step);
       this.retrieveAll();
 
     }else{
@@ -97,9 +89,6 @@ export class HomeComponent implements OnInit {
         });
       }
     }
-
-
-    console.log(m.step, this.step);
 
   }
 
