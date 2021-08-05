@@ -49,7 +49,7 @@ export class RecordAnswerComponent implements OnInit {
     this.questionService.saveQuestion(this.question).subscribe(retorno =>{
       this.questionService.exibirMensagem(
         'SISTEMA',
-        `${this.question.question_dsc} foi gravado com sucesso.`,
+        'Gravado com sucesso.',
         'toast-success'
       );
      this.route.navigate(['/config/list-answer/'+this.question.id]);

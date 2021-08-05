@@ -27,7 +27,7 @@ export class ListAnswerComponent implements OnInit {
 
   deleteAnswerById(a: IAnswer): void{
     this.answerService.deleteAnswerById(Number(a.id)).subscribe(() => {
-      this.toaster.exibirMensagem('SISTEMA', `${a.answer_dsc} foi excluido com sucesso`, 'toast-success');
+      this.toaster.exibirMensagem('SISTEMA', 'Excluido com sucesso', 'toast-success');
       this.retrieveAllById(Number(this.activatedRouter.snapshot.paramMap.get('id')));
     });
   }

@@ -38,7 +38,7 @@ export class ConfigComponent implements OnInit {
     this.configService.updateQuestion(q).subscribe(retorno =>{
         this.configService.exibirMensagem(
           'SISTEMA',
-          `${q.question_dsc} foi atualizado com sucesso.`,
+          'Atualizado com sucesso.',
           'toast-success'
         );
         this.retrieveAll();
