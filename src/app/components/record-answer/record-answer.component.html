@@ -27,16 +27,34 @@
       </div>
     </div>
     <br>
+
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
 
-          <label  for="step">Próximo Passo / Resposta Final</label>
-          <input type="text" class="form-control" maxlength="30" name="step" [(ngModel)]="answer.step" required #aStep="ngModel" [ngClass]="{'is-invalid': aStep.invalid}">
+        <div class="form-group" *ngIf="answer.next_step">
+          <label  for="step">Próximo Passo</label>
+          <input type="number" class="form-control" name="step" [(ngModel)]="answer.step" required #aStep="ngModel" [ngClass]="{'is-invalid': aStep.invalid}">
+        </div>
 
+        <div class="form-group" *ngIf="!answer.next_step">
+          <label  for="step">Resposta Final</label>
+          <input type="text" class="form-control" maxlength="45" name="final_answer" [(ngModel)]="answer.final_answer" required #aFinalAnswer="ngModel" [ngClass]="{'is-invalid': aFinalAnswer.invalid}">
         </div>
       </div>
     </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="form-check">
+          <label class="form-check-label" for="next_step">Se escolher essa resposta o chat deverá ser bloqueado?</label>
+          <input type="checkbox" class="form-check-input" name="stop_chat" [(ngModel)]="answer.stop_chat" #aStop_chat="ngModel" [ngClass]="{'is-invalid': aStop_chat.invalid}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
 
 
 

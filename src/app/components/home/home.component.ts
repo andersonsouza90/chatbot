@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   conversation: any = [];
   conversationList: any = [];
   step = 0;
+  stop_chat = false;
 
   constructor(private cd: ChangeDetectorRef, private homeService : HomeService) { }
 
@@ -49,21 +50,24 @@ export class HomeComponent implements OnInit {
 
   answerChosen(m: any, a: any){
 
-    if(this.step == -1){
-      throw "Menor que 18 anos!";
+    if(this.stop_chat){
+      throw "Chat bloqueado!";
     }
+
+    console.log(m ,a);
 
     //pensar em separar por funções
     if(a.step == 'Y'){
-      this.step = 2;
+      //this.step = this.conversationList[0].step;
       this.conversation = [];
-      this.retrieveByStep(this.step);
+      this.retrieveAll();
 
     }else if(a.step == 'N'){
       this.showPopup = false;
-      this.step = 1;
+      //this.step = 1;
       this.conversation = [];
-      this.retrieveByStep(this.step);
+      //this.retrieveByStep(this.step);
+      this.retrieveAll();
 
     }else{
 
@@ -71,15 +75,17 @@ export class HomeComponent implements OnInit {
         if(!a.next_step){
           this.step = -1 ;
           this.conversation.push({
-                                  question_dsc: a.step,
+                                  question_dsc: a.final_answer,
                                   final_answer: true});
         }else{
           this.step = a.step;
           this.retrieveByStep(this.step);
         }
+
+        this.stop_chat = a.stop_chat;
       }
 
-      if(a.step.indexOf('Suges') !== -1 && this.step != 1000){
+      if(a.final_answer.indexOf('Suges') !== -1 && this.step != 1000 && (m.step >= this.step)){
         this.step = 1000 ;
         this.conversation.push({
           question_dsc: "Deseja refazer as questões?",
@@ -91,6 +97,9 @@ export class HomeComponent implements OnInit {
         });
       }
     }
+
+
+    console.log(m.step, this.step);
 
   }
 

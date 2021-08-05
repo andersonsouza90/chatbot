@@ -19,7 +19,9 @@ export class RecordAnswerComponent implements OnInit {
   answer: IAnswer = {
     answer_dsc: '',
     next_step: false,
-    step: ''
+    stop_chat: false,
+    step: 0,
+    final_answer : ''
   }
 
   ngOnInit(): void {
@@ -39,8 +41,8 @@ export class RecordAnswerComponent implements OnInit {
 
   saveAnswer(): void{
 
-    if(!Number(this.answer.step)){
-      this.answer.step = 'Sugestão: ' + this.answer.step;
+    if(!this.answer.step && !this.answer.stop_chat){
+      this.answer.final_answer = 'Sugestão: ' + this.answer.final_answer;
     }
 
     this.question.answers.push(this.answer);

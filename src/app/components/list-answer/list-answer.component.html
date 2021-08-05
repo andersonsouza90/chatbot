@@ -9,7 +9,8 @@
         <tr>
           <th style="width:100px;">Resposta</th>
           <th style="width:310px;">Possui Próximo passo</th>
-          <th style="width:310px;">Próximo Passo / Resposta Final</th>
+          <th style="width:310px;">Próximo Passo</th>
+          <th style="width:310px;">Resposta Final</th>
           <th>
             <a class="btn btn-success me-1" routerLink="/config/list-answer/record-answer/{{question.id}}" title="Cadastrar Respostas"><i class="fa fa-plus" aria-hidden="true"></i></a>
 
@@ -27,6 +28,9 @@
           </td>
           <td>
             {{a.step}}
+          </td>
+          <td>
+            {{a.final_answer}}
           </td>
 
           <td>
