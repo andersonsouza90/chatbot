@@ -1,0 +1,54 @@
+<h5 class="my-3 text-primary">
+  Lista de Respostas : {{question.question_dsc}}
+</h5>
+
+<div class="container container-table" >
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th style="width:100px;">Resposta</th>
+          <th style="width:310px;">Possui Próximo passo</th>
+          <th style="width:310px;">Próximo Passo / Resposta Final</th>
+          <th>
+            <a class="btn btn-success me-1" routerLink="/config/list-answer/record-answer/{{question.id}}" title="Cadastrar Respostas"><i class="fa fa-plus" aria-hidden="true"></i></a>
+
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let a of answers">
+          <td>
+            {{a.answer_dsc}}
+          </td>
+          <td>
+            {{a.next_step}}
+          </td>
+          <td>
+            {{a.step}}
+          </td>
+
+          <td>
+
+            <a class="btn btn-danger" (confirm)="deleteAnswerById(a)"
+            [swal]="{
+              title: 'ATENÇÃO',
+              text: 'Deseja realmente excluir a pergunta? ',
+              showDenyButton: true,
+              denyButtonText: 'Não',
+              confirmButtonText: 'Sim, excluir.', icon: 'warning'
+            }"
+            >
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <a class="btn btn-primary" routerLink="/config">Voltar</a>
+
+  </div>

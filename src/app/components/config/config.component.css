@@ -1,0 +1,14 @@
+input[name='step']{
+  width: 80px !important;
+}
+
+@media (max-width:500px){
+.container-table{
+  width: 200%;
+}
+
+input[name='question']{
+  width: 90% !important;
+}
+
+}

@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+
 <body>
 
+  <div class="container">
+    <div class="row">
+
+
+      <div class="col p-2 mt-4 ">
+        <div class="card" style="width: 18rem;">
+          <img [src]="'assets/img/cerveja.jpg'"  class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text text-center">
+              Cerveja IPA
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col p-2 mt-4">
+        <div class="card" style="width: 18rem;">
+          <img [src]="'assets/img/cerveja.jpg'"  class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text text-center">
+              Cerveja Pilsen
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col p-2 mt-4">
+        <div class="card" style="width: 18rem;">
+          <img [src]="'assets/img/cerveja.jpg'"  class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text text-center">
+              Cerveja Stout
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col p-2 mt-4">
+        <div class="card" style="width: 18rem;">
+          <img [src]="'assets/img/cerveja.jpg'"  class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text text-center">
+              Cerveja Premium Lager
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
   <section>
-      <h1>Chat Popup</h1>
-      <p>Click on the chat button to start chatting</p>
+
 
       <button class="chat-btn" (click)="togglePopup()">
           <i class="fa fa-comment"></i>
@@ -55,6 +105,9 @@
           </div>
       </div>
   </section>
+
+
+
 
 </body>
 </html>

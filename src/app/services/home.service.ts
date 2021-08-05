@@ -15,7 +15,7 @@ export class HomeService{
   }
 
   retrieveByStep(step: number): Observable<[]>{ //Observable empacota o response, é assincrono
-    return this.httpClient.get<any>(AppConstants.baseUrl+step);
+    return this.httpClient.get<any>(AppConstants.baseUrl+'/byStep/'+step);
   }
 
 }

@@ -1,0 +1,38 @@
+<h1 class="my-3 text-primary">
+  Cadastrar de Pergunta
+</h1>
+
+
+<div class="card shadow">
+  <form class="m-3" #form="ngForm">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="nome">Step</label>
+          <input type="number" class="form-control" name="step" [(ngModel)]="question.step" required #qStep="ngModel" [ngClass]="{'is-invalid': qStep.invalid}">
+        </div>
+      </div>
+    </div> <!--Fim row-->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="validade">Question</label>
+          <input type="text" class="form-control" name="question_dsc" [(ngModel)]="question.question_dsc" required #qQuestion_dsc="ngModel" [ngClass]="{'is-invalid': qQuestion_dsc.invalid}">
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row mt-2">
+      <div class="col">
+        <button class="btn btn-primary" routerLink="/config">Voltar</button>
+        <button [disabled]="form.invalid" class="btn btn-success float-end" (click)="saveQuestion()" type="submit">Salvar</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

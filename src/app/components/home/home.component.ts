@@ -18,6 +18,12 @@ export class HomeComponent implements OnInit {
     this.retrieveByStep(this.step);
   }
 
+  //contornar o erro do scrollTop
+  ngAfterContentChecked() {
+    this.cd.detectChanges();
+  }
+
+
   retrieveAll(): void{
     this.homeService.retrieveAll().subscribe({
       next: r => {
@@ -32,6 +38,7 @@ export class HomeComponent implements OnInit {
     this.homeService.retrieveByStep(step).subscribe({
       next: r => {
         this.conversation.push(r);
+        console.log(this.conversation);
       },
       error: err => console.log('Erro: ' + err)
     });
@@ -82,12 +89,6 @@ export class HomeComponent implements OnInit {
       }
     }
 
-  }
-
-
-  //contornar o erro do scrollTop
-  ngAfterContentChecked() {
-    this.cd.detectChanges();
   }
 
   togglePopup(){

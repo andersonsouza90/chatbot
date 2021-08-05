@@ -1,0 +1,54 @@
+<h5 class="my-3 text-primary">
+  Lista de Respostas : {{question.question_dsc}}
+</h5>
+
+
+<div class="card shadow">
+  <form class="m-3" #form="ngForm">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="answer_dsc">Resposta</label>
+          <input type="text" class="form-control" [(ngModel)]="answer.answer_dsc"  #aAnswer_dsc="ngModel" name="answer_dsc"  required  [ngClass]="{'is-invalid': aAnswer_dsc.invalid}">
+        </div>
+      </div>
+    </div> <!--Fim row-->
+
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="form-check">
+          <label class="form-check-label" for="next_step">Possui Próximo passo?</label>
+          <input type="checkbox" class="form-check-input" name="next_step" [(ngModel)]="answer.next_step" #aNext_step="ngModel" [ngClass]="{'is-invalid': aNext_step.invalid}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+
+          <label  for="step">Próximo Passo / Resposta Final</label>
+          <input type="text" class="form-control" name="step" [(ngModel)]="answer.step" required #aStep="ngModel" [ngClass]="{'is-invalid': aStep.invalid}">
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row mt-2">
+      <div class="col">
+        <a class="btn btn-primary" routerLink="/config/list-answer/{{question.id}}">Voltar</a>
+        <button [disabled]="form.invalid" class="btn btn-success float-end" (click)="saveAnswer()" type="button">Salvar</button>
+      </div>
+    </div>
+
+  </form>
+
+
+</div>
+
