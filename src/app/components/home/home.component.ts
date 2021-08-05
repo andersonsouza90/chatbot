@@ -10,12 +10,14 @@ export class HomeComponent implements OnInit {
   showPopup : boolean = false;
   msg: string = '';
   conversation: any = [];
-  step = 1;
+  conversationList: any = [];
+  step = 0;
 
   constructor(private cd: ChangeDetectorRef, private homeService : HomeService) { }
 
   ngOnInit(): void {
-    this.retrieveByStep(this.step);
+    this.retrieveAll();
+
   }
 
   //contornar o erro do scrollTop
@@ -27,8 +29,9 @@ export class HomeComponent implements OnInit {
   retrieveAll(): void{
     this.homeService.retrieveAll().subscribe({
       next: r => {
-        this.conversation = r;
-        console.log(' this.conversation',  this.conversation);
+        this.conversationList = r;
+        this.step = Number(this.conversationList[0].step);
+        this.retrieveByStep(this.step);
       },
       error: err => console.log('Erro: ' + err)
     });
@@ -37,8 +40,8 @@ export class HomeComponent implements OnInit {
   retrieveByStep(step: number): void{
     this.homeService.retrieveByStep(step).subscribe({
       next: r => {
-        this.conversation.push(r);
-        console.log(this.conversation);
+        if(r != null) this.conversation.push(r);
+        console.log(this.conversation, step);
       },
       error: err => console.log('Erro: ' + err)
     });

@@ -3,12 +3,9 @@ input[name='step']{
 }
 
 @media (max-width:500px){
-.container-table{
-  width: 200%;
-}
 
-input[name='question']{
-  width: 90% !important;
-}
+  input[name='question']{
+    width: 200px !important;
+  }
 
 }
