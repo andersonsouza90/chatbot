@@ -64,11 +64,15 @@ p{
 }
 .col-banner{
   display: flex;
-  line-height: 56px;
+  line-height: 59px;
+}
+
+.col-banner p{
+  font-weight: bold;
 }
 
 .col-banner img{
-  margin-right: 20%
+  margin-right: 18%
 }
 
 .chat-btn{
@@ -240,12 +244,11 @@ input[type="text"]{
   }
 
   .col-banner p{
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 19px;
   }
 
   .col-banner img{
-    margin-right: 10%;
+    margin-right: 0%;
   }
 
 }
