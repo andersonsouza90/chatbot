@@ -10,27 +10,40 @@ import { Router } from '@angular/router';
 })
 export class RecordQuestionComponent implements OnInit {
 
-  constructor(private questionService: QuestionService, private route: Router) { }
+  constructor(private questionService: QuestionService,
+              private route: Router) { }
 
   question: IQuestion = {
     question_dsc: '',
     step: 0
   };
+  conversationList: any = [];
 
   ngOnInit(): void {
+    this.retrieveAll();
   }
 
   saveQuestion(): void{
-    this.questionService.saveQuestion(this.question).subscribe(retorno =>{
-      this.questionService.exibirMensagem(
-        'SISTEMA',
-        'Gravado com sucesso.',
-        'toast-success'
-      );
+      this.questionService.saveQuestion(this.question).subscribe(retorno =>{
+          this.questionService.exibirMensagem(
+            'SISTEMA',
+            'Gravado com sucesso.',
+            'toast-success'
+          );
 
-      this.route.navigate(['/config']);
-
-    });
+          this.route.navigate(['/config']);
+      });
   }
+
+  retrieveAll(): void{
+      this.questionService.retrieveAll().subscribe({
+          next: r => {
+              this.conversationList = r;
+              this.question.step = this.conversationList.length + 1;
+          },
+          error: err => console.log('Erro: ' + err)
+      });
+  }
+
 
 }

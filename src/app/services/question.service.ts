@@ -13,6 +13,10 @@ export class QuestionService{
 
   constructor(private httpClient: HttpClient, private toastr: ToastrService) { }
 
+  retrieveAll(): Observable<[]>{
+    return this.httpClient.get<[]>(AppConstants.baseUrl);
+  }
+
   retrieveById(id : number): Observable<IQuestion[]>{
     return this.httpClient.get<[]>(AppConstants.baseUrl+id);
   }
