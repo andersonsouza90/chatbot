@@ -1,6 +1,7 @@
 import { IQuestion } from './../../model/Question.model';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HomeService } from 'src/app/services/home.service';
+import { IAnswer } from 'src/app/model/Answer.model';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
   constructor(private cd: ChangeDetectorRef, private homeService : HomeService) { }
 
   ngOnInit(): void {
-    this.retrieveAll();
+      this.retrieveAll();
   }
 
   //contornar o erro do scrollTop
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   retrieveAll(): void{
-    this.conversation = [];
+      this.conversation = [];
       this.homeService.retrieveAll().subscribe({
           next: r => {
               this.conversationList = r;
@@ -44,57 +45,48 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  filterQuestion(value: number){
-      this.filteredQuestion = this.conversationList.filter((q: IQuestion) => q.step == value)[0];
-      this.conversation.push(this.filteredQuestion);
+  answerChosen(m: any, a: any, e: any){
+      this.disableAnswers(m.id, e);
+
+      if(this.stop_chat) throw "Chat bloqueado!";
+
+      if(a.step == 'Y'){
+          this.retrieveAll();
+          this.cd.detectChanges(); //contornar o erro do scrollTop
+
+      }else if(a.step == 'N'){
+          this.showPopup = false;
+
+      }else{
+
+          if(m.step = this.step){
+              if(!a.next_step){
+                this.sendFinalAnswer(a);
+              }else{
+                  this.step = a.step;
+                  this.filterQuestion(this.step);
+              }
+              this.stop_chat = a.stop_chat;
+          }
+
+          if(!a.next_step && !this.stop_chat){
+              this.sendSuggestion();
+          }
+
+      }
   }
 
-  answerChosen(m: any, a: any){
-
-    if(this.stop_chat){
-        throw "Chat bloqueado!";
-    }
-
-    if(a.step == 'Y'){
-        this.retrieveAll();
-        //contornar o erro do scrollTop
-        this.cd.detectChanges();
-
-    }else if(a.step == 'N'){
-        this.showPopup = false;
-
-    }else{
-
-      if(m.step >= this.step){
-          if(!a.next_step){
-            this.step = -1 ;
-            this.conversation.push({
-                                    question_dsc: a.final_answer,
-                                    final_answer: true});
-        }else{
-            this.step = a.step;
-            this.filterQuestion(this.step);
-        }
-
-        this.stop_chat = a.stop_chat;
-      }
-
-      if( a.final_answer.indexOf('Suges') !== -1
-          && this.step != this.conversationList.length
-          && (m.step >= this.step)){
-
-          this.step = this.conversationList.length + 1;
-          this.conversation.push({
-              question_dsc: "Deseja refazer as questões?",
-              final_answer: false,
-              answers : [
-                {answer_dsc: "Sim", next_step: false, step: "Y"},
-                {answer_dsc: "Não", next_step: false, step: "N"}
-              ]
-            });
-      }
-    }
-
+  //start functions
+  sendSuggestion(){
+      this.step = this.conversationList.length + 1;
+      this.conversation.push({
+          question_dsc: "Deseja refazer as questões?",
+          final_answer: false,
+          answers : [
+            {answer_dsc: "Sim", next_step: false, step: "Y"},
+            {answer_dsc: "Não", next_step: false, step: "N"}
+          ]
+        });
   }
 
   togglePopup(){
@@ -102,19 +94,27 @@ export class HomeComponent implements OnInit {
       if(this.showPopup) this.retrieveAll();
   }
 
-  sendMessage(){
-      this.conversation.push({typeMsg: 'human',
-                              class_div: 'out-msg',
-                              class_text: 'my-msg',
-                              text: this.msg});
-      this.msg = '';
+  sendFinalAnswer(a: IAnswer){
+      this.step = -1 ;
+      this.conversation.push({
+                question_dsc: a.final_answer,
+                final_answer: true});
+  };
+
+  filterQuestion(value: number){
+      this.filteredQuestion = this.conversationList.filter((q: IQuestion) => q.step == value)[0];
+      this.conversation.push(this.filteredQuestion);
   }
 
-  //envia mensagem com enter
-  onKeyUp(e: any){
-      if(e.keyCode == 13 && this.msg) this.sendMessage();
+  disableAnswers(id:number, e: any){
+      e.target.classList.add('btn-answer-chosen');
+      const elementHtml = document.getElementsByClassName('answer-'+id);
+      for (var i = 0; i < elementHtml.length; i++) {
+        elementHtml[i].setAttribute('disabled', 'disabled')
+      }
   }
 
+  //end functions
 
 }
 
