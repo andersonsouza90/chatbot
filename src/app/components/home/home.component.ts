@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
               }
               this.stop_chat = a.stop_chat;
           }
-          console.log(this.stop_chat);
+
           if(!a.next_step && !this.stop_chat){
               this.sendSuggestion();
           }
