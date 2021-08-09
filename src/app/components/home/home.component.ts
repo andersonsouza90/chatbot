@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   conversationList: any = [];
   step = 0;
   stop_chat = false;
+  showChatBtn = true;
   filteredQuestion: IQuestion = {
     id: 0,
     question_dsc: '',
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
               this.step = Number(this.conversationList[0].step);
               this.filterQuestion(this.step);
               this.stop_chat = false;
+              this.showChatBtn = true;
           },
           error: err => console.log('Erro: ' + err)
       });
@@ -91,7 +93,7 @@ export class HomeComponent implements OnInit {
 
   togglePopup(){
       this.showPopup = !this.showPopup;
-      if(this.showPopup) this.retrieveAll();
+      if(this.showPopup) this.showChatBtn = false; this.retrieveAll();
   }
 
   sendFinalAnswer(a: IAnswer){

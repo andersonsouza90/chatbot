@@ -71,7 +71,7 @@
   <section>
 
 
-      <button class="chat-btn" (click)="togglePopup()">
+      <button class="chat-btn" (click)="togglePopup()" *ngIf="showChatBtn">
           <i class="fa fa-comment"></i>
       </button>
 
