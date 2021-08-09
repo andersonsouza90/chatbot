@@ -213,6 +213,11 @@ p{
   justify-content: center;
 }
 
+.input-area input{
+  padding: 10px;
+  color: grey;
+}
+
 input[type="text"]{
   width:100%;
   border: 1px solid #ccc;

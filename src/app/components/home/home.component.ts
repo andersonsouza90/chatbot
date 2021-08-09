@@ -10,7 +10,7 @@ import { IAnswer } from 'src/app/model/Answer.model';
 })
 export class HomeComponent implements OnInit {
   showPopup : boolean = false;
-  msg: string = '';
+  msg: string = 'Escolha uma opção.';
   conversation: any = [];
   conversationList: any = [];
   step = 0;
