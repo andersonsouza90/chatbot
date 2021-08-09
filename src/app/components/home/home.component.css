@@ -90,6 +90,21 @@ p{
   font-size: 30px;
 }
 
+.chat-btn-close{
+  position: fixed;
+  right:50px;
+  bottom: 50px;
+  background: red;
+  color: white;
+  width:60px;
+  height: 60px;
+  border-radius: 50%;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+  box-shadow: 0 5px 5px #000;
+  font-size: 30px;
+}
+
 .chat-btn:hover, .submit:hover, #emoji-btn:hover{
   opacity: 1;
 }

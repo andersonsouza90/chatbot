@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit {
               this.step = Number(this.conversationList[0].step);
               this.filterQuestion(this.step);
               this.stop_chat = false;
-              this.showChatBtn = true;
           },
           error: err => console.log('Erro: ' + err)
       });
@@ -91,12 +90,19 @@ export class HomeComponent implements OnInit {
         });
   }
 
-  togglePopup(){
-      this.showPopup = !this.showPopup;
+  fnShowChatBtn(){
+      this.showPopup = true;
       if(this.showPopup) {
           this.showChatBtn = false;
           this.retrieveAll();
       }
+  }
+
+  fnCloseChatBtn(){
+    this.showPopup = false;
+    if(!this.showPopup) {
+        this.showChatBtn = true;
+    }
   }
 
   sendFinalAnswer(a: IAnswer){

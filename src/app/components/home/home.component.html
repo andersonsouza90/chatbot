@@ -70,10 +70,14 @@
 
   <section>
 
+      <button class="chat-btn-close" (click)="fnCloseChatBtn()" *ngIf="!showChatBtn">
+          <i class="fa fa-times"></i>
+      </button>
 
-      <button class="chat-btn" (click)="togglePopup()" *ngIf="showChatBtn">
+      <button class="chat-btn" (click)="fnShowChatBtn()" *ngIf="showChatBtn">
           <i class="fa fa-comment"></i>
       </button>
+
 
       <div class="chat-popup" *ngIf="showPopup">
           <div class="chat-area" #scrollMe [scrollTop]="scrollMe.scrollHeight">
