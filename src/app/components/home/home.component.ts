@@ -93,7 +93,10 @@ export class HomeComponent implements OnInit {
 
   togglePopup(){
       this.showPopup = !this.showPopup;
-      if(this.showPopup) this.showChatBtn = false; this.retrieveAll();
+      if(this.showPopup) {
+          this.showChatBtn = false;
+          this.retrieveAll();
+      }
   }
 
   sendFinalAnswer(a: IAnswer){
