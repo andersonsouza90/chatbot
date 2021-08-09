@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
 
   retrieveAll(): void{
       this.conversation = [];
+      this.conversationList = [];
       this.homeService.retrieveAll().subscribe({
           next: r => {
               this.conversationList = r;
@@ -57,7 +58,7 @@ export class HomeComponent implements OnInit {
 
       }else if(a.step == 'N'){
           this.showPopup = false;
-
+          this.showChatBtn = true;
       }else{
 
           if(m.step = this.step){
