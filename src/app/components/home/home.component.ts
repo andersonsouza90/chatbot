@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   step = 0;
   stop_chat = false;
   showChatBtn = true;
+  permitRequest = true;
   filteredQuestion: IQuestion = {
     id: 0,
     question_dsc: '',
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
   constructor(private cd: ChangeDetectorRef, private homeService : HomeService) { }
 
   ngOnInit(): void {
-      this.retrieveAll();
+
   }
 
   //contornar o erro do scrollTop
@@ -34,17 +35,21 @@ export class HomeComponent implements OnInit {
   }
 
   retrieveAll(): void{
-      this.conversation = [];
-      this.conversationList = [];
-      this.homeService.retrieveAll().subscribe({
-          next: r => {
-              this.conversationList = r;
-              this.step = Number(this.conversationList[0].step);
-              this.filterQuestion(this.step);
-              this.stop_chat = false;
-          },
-          error: err => console.log('Erro: ' + err)
-      });
+      if(this.permitRequest){
+        this.permitRequest = false;
+          this.conversation = [];
+          this.conversationList = [];
+          this.homeService.retrieveAll().subscribe({
+              next: r => {
+                  this.conversationList = r;
+                  this.step = Number(this.conversationList[0].step);
+                  this.filterQuestion(this.step);
+                  this.stop_chat = false;
+                  this.permitRequest = true;
+              },
+              error: err => console.log('Erro: ' + err)
+          });
+      }
   }
 
   answerChosen(m: any, a: any, e: any){
