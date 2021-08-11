@@ -97,9 +97,9 @@ export class HomeComponent implements OnInit {
   }
 
   fnShowChatBtn(){
-      this.showPopup = true;
+      this.showPopup = !this.showPopup;
+      this.showChatBtn = !this.showChatBtn;
       if(this.showPopup) {
-          this.showChatBtn = false;
           this.retrieveAll();
       }
   }
